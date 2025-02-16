@@ -1,24 +1,26 @@
 const express = require('express');
 const verifyToken = require('../middlewares/authMiddleware');
 const authorizeRoles = require('../middlewares/roleMiddleware');
+
 const router = express.Router();
 
-// Only Admin can access this router
-router.get('/admin', verifyToken, authorizeRoles("admin"),(req, res) => {
-    res.json({message: "Welcome Admin"});
-});
+/**
+ * Utility to create protected routes with role-based access control.
+ * 
+ * @param {string} path - The route path.
+ * @param {string[]} allowedRoles - Array of roles allowed to access the route.
+ * @param {string} message - Response message.
+ */
+const createRoute = (path, allowedRoles, message) => {
+    router.get(path, verifyToken, authorizeRoles(...allowedRoles), (req, res) => {
+        res.json({ message });
+    });
+};
 
 
-// Both Admin and Manager can access this router
-router.get('/manager', verifyToken, authorizeRoles("admin", "manager"), (req, res) => {
-    res.json({message: "Welcome Manager"});
-});
-
-
-// All can access this router
-router.get('/user', verifyToken, authorizeRoles("admin", "manager", "user"), (req, res) => {
-    res.json({message: "Welcome User"});
-});
-
+// Define routes
+createRoute('/admin', ['admin'], 'Welcome Admin'); // Only Admin can access this router
+createRoute('/manager', ['admin', 'manager'], 'Welcome Manager'); // Both Admin and Manager can access this router
+createRoute('/user', ['admin', 'manager', 'user'], 'Welcome User');// All can access this router
 
 module.exports = router;
