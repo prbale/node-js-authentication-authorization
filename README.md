@@ -206,15 +206,15 @@ The server will run on http://localhost:7000.
 ├── controllers
 │   └── authController.js       # Handles authentication logic
 ├── middlewares
-│   └── authMiddleware.js       # Middleware for protecting routes
+│   └── authMiddleware.js       # Middleware for authenticating users and securing protected routes.
+|   └── roleMiddleware.js       # Middleware for authorizing user roles and managing access control.
 ├── models
-│   └── User.js                 # User schema and model
+│   └── UserModel.js            # User schema and model
 ├── routes
-│   └── authRoutes.js           # Routes for authentication and authorization
-├── utils
-│   └── tokenUtils.js           # Helper functions for token management
+│   └── authRoutes.js           # Routes for authentication
+│   └── userRoutes.js           # Routes for authorization
 ├── .env                        # Environment variables (excluded from Git)
-├── server.js                   # Main server file
+├── index.js                    # Main server file
 └── README.md                   # Project documentation
 ```
 
