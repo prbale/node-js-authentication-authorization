@@ -216,7 +216,7 @@ The server will run on http://localhost:7000.
 ├── .env                        # Environment variables (excluded from Git)
 ├── server.js                   # Main server file
 └── README.md                   # Project documentation
-
+```
 
 ## 🚧 Best Practices Followed
 - Password Hashing: Using bcrypt to hash and securely store passwords.
@@ -227,7 +227,6 @@ The server will run on http://localhost:7000.
 
 
 ## 🌐 Connect with Me
-
 - 🐙 **GitHub**: [@prbale](https://github.com/prbale)  
 - ✍️ **Blog**: [Prashant's Blog](https://prashbale.hashnode.dev/)  
 - 💼 **LinkedIn**: [Prashant Bale](https://www.linkedin.com/in/prashantbale/)  
