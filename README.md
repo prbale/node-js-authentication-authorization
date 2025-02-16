@@ -50,28 +50,25 @@ The server will run on http://localhost:7000.
 
 ### 🔐 Authentication APIs
 
-1. **User Signup**
-    - **Endpoint**: `POST /api/auth/signup`
+1. **Register User**
+    - **Endpoint**: `POST /api/auth/register`
     - **Description**: Register a new user.
     - **Request Body**:
     ```json
     {
-      "username": "john_doe",
-      "email": "john@example.com",
-      "password": "securepassword"
+      "username": "prashant",
+      "password": "securepassword",
+      "role": "admin"
     }
     ```
     - **Response** (Success):
     ```json
     {
-      "message": "User registered successfully",
-      "userId": "60c72b2f5f1b2c001c8e4e5a"
+    "message": "User registered with username prashant"
     }
     ```
     - **Possible Errors**:
-      - `400 Bad Request`: Invalid input data
-      - `409 Conflict`: Email already exists
-
+      - `500 Server Error`: Internal Serveer Error
 ---
 
 2. **User Login**
@@ -79,55 +76,28 @@ The server will run on http://localhost:7000.
     - **Description**: Authenticate an existing user.
     - **Request Body**:
     ```json
-    {
-      "email": "john@example.com",
-      "password": "securepassword"
-    }
-    ```
-    - **Response** (Success):
-    ```json
-    {
-      "message": "Login successful",
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI...",
-      "user": {
-        "id": "60c72b2f5f1b2c001c8e4e5a",
-        "username": "john_doe",
-        "email": "john@example.com",
-        "role": "user"
+      {
+       "username": "prashant",
+       "password": "securepassword"
       }
-    }
-    ```
-    - **Possible Errors**:
-      - `401 Unauthorized`: Invalid credentials
-      - `404 Not Found`: User not found
-
----
-
-3. **Refresh Token**
-    - **Endpoint**: `POST /api/auth/refresh-token`
-    - **Description**: Refresh the access token.
-    - **Request Body**:
-    ```json
-    {
-      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ..."
-    }
     ```
     - **Response** (Success):
     ```json
-    {
-      "accessToken": "new-access-token",
-      "expiresIn": 3600
-    }
+       {
+       "token":       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjFkZjg5MWE5NjE4NTUwYWNjNjM5YyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzM5NzE5Njk0LCJleHAiOjE3Mzk3MjMyOTR9.m4c7t5ReocuAk9Q9MKZFTXnsGt5KgR9Lpm7Y_6InNjM"
+   }
     ```
     - **Possible Errors**:
-      - `403 Forbidden`: Invalid or expired token
+      - `400 Unauthorized`: Invalid credentials
+      - `404 Not Found`: User not found
+      - `500 Server Error`: Internal Server Error
 
 ---
 
 ### 🔑 Authorization APIs (Protected Routes)
 
 1. **Access Admin Panel**
-    - **Endpoint**: `GET /api/admin`
+    - **Endpoint**: `GET /api/users/admin`
     - **Description**: Access restricted to users with `admin` role.
     - **Headers**:
     ```
@@ -136,60 +106,16 @@ The server will run on http://localhost:7000.
     - **Response** (Success):
     ```json
     {
-      "message": "Welcome, Admin!",
-      "adminData": { ... }
+      "message": "Welcome Admin!"
     }
     ```
     - **Possible Errors**:
-      - `401 Unauthorized`: Missing or invalid token
+      - `400 Unauthorized`: Invalid token
+      - `401 Unauthorized`: No token
       - `403 Forbidden`: Access denied for non-admin users
 
 ---
-
-2. **Access User Dashboard**
-    - **Endpoint**: `GET /api/user`
-    - **Description**: Accessible to all authenticated users.
-    - **Headers**:
-    ```
-    Authorization: Bearer <JWT_TOKEN>
-    ```
-    - **Response** (Success):
-    ```json
-    {
-      "message": "Welcome to your dashboard",
-      "userData": { ... }
-    }
-    ```
-    - **Possible Errors**:
-      - `401 Unauthorized`: Missing or invalid token
-
----
-
-### 🔄 Utility APIs
-
-1. **Health Check**
-    - **Endpoint**: `GET /api/health`
-    - **Description**: Check if the server is running.
-    - **Response**:
-    ```json
-    {
-      "status": "ok",
-      "timestamp": "2024-02-16T12:30:45Z"
-    }
-    ```
-
----
-
-### ⚠️ Error Handling
-
-- All API responses will follow a standard error structure:
-    ```json
-    {
-      "error": "Error description",
-      "code": 400
-    }
-    ```
-
+   
 - Common HTTP Status Codes:
     - `200 OK`: Success
     - `201 Created`: Resource successfully created
