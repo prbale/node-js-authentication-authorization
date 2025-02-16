@@ -152,6 +152,25 @@ The server will run on http://localhost:7000.
 - Input Validation: Basic validation to prevent common security threats.
 
 
+## 🚧 Best Practices Followed
+
+1. 🔐 **Password Hashing**  
+   - Using `bcrypt` to hash and securely store passwords to protect sensitive user credentials.
+
+2. 🛠️ **Environment Variables**  
+   - All secrets and sensitive data (e.g., database credentials, JWT secrets) are stored in a `.env` file to avoid exposing them in the source code.
+
+3. 🔑 **JWT Authentication**  
+   - Implemented stateless authentication using **JSON Web Tokens (JWT)** to provide secure and efficient session management.
+
+4. 🛂 **Role-Based Access Control (RBAC)**  
+   - Users are assigned roles, and access to specific routes and resources is granted or restricted based on their roles.
+
+---
+
+**🔑 Security is not a feature, it's a foundation!** 🛡️
+
+
 ## 🌐 Connect with Me
 - 🐙 **GitHub**: [@prbale](https://github.com/prbale)  
 - ✍️ **Blog**: [Prashant's Blog](https://prashbale.hashnode.dev/)  
