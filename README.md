@@ -225,7 +225,13 @@ The server will run on http://localhost:7000.
 - Role-Based Access Control (RBAC): Assign roles and restrict access accordingly.
 - Input Validation: Basic validation to prevent common security threats.
 
+
 ## 🌐 Connect with Me
-- GitHub: @prbale
-- Blog: Prashant's Blog
-- LinkedIn: Prashant Bale
+
+- 🐙 **GitHub**: [@prbale](https://github.com/prbale)  
+- ✍️ **Blog**: [Prashant's Blog](https://prashbale.hashnode.dev/)  
+- 💼 **LinkedIn**: [Prashant Bale](https://www.linkedin.com/in/prashantbale/)  
+
+---
+
+**📢 Let's build something amazing together!** 🚀
