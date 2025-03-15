@@ -8,6 +8,7 @@ const rateLimit = require('express-rate-limit');
 
 const errorHandler = require('./middlewares/errorhandler');
 const dbConnect = require('./config/dbConnect');
+
 const authRoutes = require('./routes/authRouts');
 const userRoutes = require('./routes/userRoutes');
 
@@ -19,7 +20,7 @@ dbConnect();
 
 // Application Constants
 const PORT = process.env.PORT || 7002;
-const APP_NAME = process.env.APP_NAME || "Node API";
+const APP_NAME = process.env.APP_NAME || "Node API - Authentication and Authorization";
 
 // Security Middleware
 app.use(express.json()); // Middleware for parsing JSON bodies
@@ -44,6 +45,7 @@ app.use(errorHandler);
 
 //--------------- Start the server ---------------
 app.listen(PORT, () => {
+    console.log(`Welcome to ${APP_NAME}!`);
     console.log(`${process.env.APP_NAME} is running on Port ${PORT}`);
 });
 
