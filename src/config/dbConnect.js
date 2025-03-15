@@ -9,12 +9,12 @@ const mongoose = require('mongoose');
  * - Handles conection errors gracefully.
  */
 const dbConnect = async () => {
-    
+
     try {
         const connection = await mongoose.connect(process.env.CONNECTION_STRING);
         console.log(`Database Connected Successfully : Host: ${connection.connection.host}, Database: ${connection.connection.name}`);
     }
-    catch(err) {
+    catch (err) {
         console.error("Database Connection Failed.");
         console.log(err);
         process.exit(1);

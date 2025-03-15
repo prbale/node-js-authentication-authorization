@@ -4,6 +4,10 @@ const { register, login } = require('../controllers/authController');
 
 const router = express.Router();
 
+/**
+ *  Defines the authentication routes for user registration and login in an Express.js application.
+ */
+
 
 /**
  * @route   POST /api/auth/register

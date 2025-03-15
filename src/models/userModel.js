@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema({
             values: Object.values(USER_ROLES),
             message: "Role must be one of: admin, manager, or user"
         },
-},
+    },
 
 }, {
     timestamps: true,
@@ -48,6 +48,9 @@ const userSchema = new mongoose.Schema({
 // Hide password in JSON output
 userSchema.set('toJSON', {
     transform: (doc, ret) => {
+
+        // It's a common practice to exclude sensitive information such as passwords when sending data over a network.
+        // The password field should never be exposed to the client or other users, even in the API response.
         delete ret.password;
         return ret;
     }

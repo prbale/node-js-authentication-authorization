@@ -1,5 +1,3 @@
-
-// Load environment variables
 const dotenv = require('dotenv').config();
 
 const express = require('express');
@@ -16,23 +14,20 @@ const userRoutes = require('./routes/userRoutes');
 // Initialize Express app
 const app = express();
 
-// Connect to the database
+// Establishes a connection to the MongoDB database.
 dbConnect();
-
 
 // Application Constants
 const PORT = process.env.PORT || 7002;
 const APP_NAME = process.env.APP_NAME || "Node API";
 
-// Middleware for parsing JSON bodies
-app.use(express.json());
-
 // Security Middleware
+app.use(express.json()); // Middleware for parsing JSON bodies
 app.use(helmet()); // Adds various security headers
 app.use(cors()); // Enable CORS for all origins (adjust if needed)
-app.use(compression()); // Compress HTTP responses
+app.use(compression()); //To improve the performance of your web application by decreasing load times and reducing bandwidth usage.
 
-// Rate Limiting (e.g., max 100 requests per 15 minutes per IP)
+// Rate Limiting Middleware (e.g., max 100 requests per 15 minutes per IP)
 const apiLimiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
     max: 100,
@@ -40,14 +35,14 @@ const apiLimiter = rateLimit({
 });
 app.use('/api/', apiLimiter);
 
-// Application Routes
+// Application Routes Middleware
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 
-// Global Error Handler
+// Global Error Handler Middleware
 app.use(errorHandler);
 
-// Start the server
+//--------------- Start the server ---------------
 app.listen(PORT, () => {
     console.log(`${process.env.APP_NAME} is running on Port ${PORT}`);
 });
